@@ -18,7 +18,9 @@ async function iniciarConexao() {
 
 async function teste() {
     //TODO Pegar lista de contatos de uma planilha
-    const listNumeros = ["6298614047"];
+
+    // Preencha esse array com uma lista de numeros com o DD ex: 629999999
+    const listNumeros = [];
 
     enviarMensagemParaListTransmissao(listNumeros, '👋 Teste de envio de Mensagem!')
 }
