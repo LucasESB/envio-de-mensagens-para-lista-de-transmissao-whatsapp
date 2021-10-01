@@ -7,6 +7,9 @@ let cliente = null;
 
 iniciarConexao();
 
+/**
+ * Cria uma conexão com o whatsapp, neste momento aparecerá um qr code no cmd para que ele possa se conectar
+ */
 async function iniciarConexao() {
     try {
         cliente = await venom.create();
