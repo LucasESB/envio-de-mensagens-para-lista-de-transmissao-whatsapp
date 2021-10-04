@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+
+    <title>Lista de Trasmissão</title>
+</head>
+
+<body>
+    <div id="areaPrincipal">
+        <p>Para o envio das mensagens é necessario informar uma palhina (.xlsx) cotento uma lista de contatos.</p>
+
+        <button id="botConectar" onclick="conectar()">Conectar WhatsApp</button>
+
+        <form id="form">
+            <label for="mensagem">Mensagem:</label>
+            <input id="mensagem" type="text" required>
+
+            <label for="planilha">Planilha:</label>
+            <input id="planilha" type="file" accept=".xlsx" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

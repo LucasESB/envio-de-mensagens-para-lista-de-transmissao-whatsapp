@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#areaPrincipal {
+    width: 330px;
+}
+
+#botConectar {
+    margin-top: 15px;
+
+    padding: 10px 10px;
+
+    background-color: #25D366;
+
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 30px;
+}
+
+#form label {
+    margin-bottom: 5px;
+}
+
+#form input {
+    margin-bottom: 10px;
+}
