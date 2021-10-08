@@ -16,16 +16,30 @@ body {
     width: 330px;
 }
 
-#botConectar {
-    margin-top: 15px;
-
-    padding: 10px 10px;
-
-    background-color: #25D366;
+button {
+    padding: 10px;
 
     border-style: none;
     border-radius: 8px;
     cursor: pointer;
+
+    color: #f4f4f4;
+}
+
+#botConectar {
+    margin-top: 15px;
+
+    background-color: #25D366;
+}
+
+#qrcode {
+    margin-top: 30px;
+
+    width: 100%;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 #form {
@@ -41,4 +55,11 @@ body {
 
 #form input {
     margin-bottom: 10px;
+
+    padding: 5px;
+}
+
+#botEnviar {
+    margin-top: 10px;
+    background-color: #eb445a;
 }

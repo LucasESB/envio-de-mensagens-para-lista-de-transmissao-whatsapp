@@ -8,6 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/conectar', async (req, res) => {
     try {
@@ -134,7 +135,7 @@ async function enviarMensagemParaListTransmissao(listTransmissao = [], mensagem 
     await cliente.logout();
     fs.unlink('./tokens/session.data.json', (err) => {});
 
-    return listNumerosNaoEnviado;
+    return { listNumerosNaoEnviado: listNumerosNaoEnviado };
 }
 
 /**

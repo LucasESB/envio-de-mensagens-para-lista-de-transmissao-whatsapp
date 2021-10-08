@@ -17,15 +17,20 @@
 
         <button id="botConectar" onclick="conectar()">Conectar WhatsApp</button>
 
+        <div id="qrcode"></div>
+
         <form id="form">
             <label for="mensagem">Mensagem:</label>
-            <input id="mensagem" type="text" required>
+            <input id="mensagem" type="text">
 
             <label for="planilha">Planilha:</label>
-            <input id="planilha" type="file" accept=".xlsx" required>
+            <input id="planilha" type="file" accept=".xlsx">
 
-            <button type="submit">Enviar</button>
+            <button id="botEnviar" type="submit">Enviar</button>
         </form>
+
+        <div id="informacao"></div>
+
     </div>
 
     <script src="script.js"></script>
