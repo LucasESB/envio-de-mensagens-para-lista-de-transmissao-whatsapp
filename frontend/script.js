@@ -3,29 +3,25 @@ const baseUrlApi = "http://localhost:3000";
 const botConectar = document.getElementById('botConectar');
 const botEnviar = document.getElementById('botEnviar');
 const divQrCode = document.getElementById('qrcode');
+const imgQrCode = document.createElement('img');
+let buscarImgQrCode = true;
 
 document.getElementById('form')
     .addEventListener('submit', enviar);
 
 async function conectar() {
-    const img = document.createElement('img');
     habilitarDesabilitarBotConectar(true);
 
     try {
         const response = apiPost('/conectar');
-
-        img.setAttribute('src', `${baseUrlApi}/qrCode.png`);
-        divQrCode.appendChild(img);
-        divQrCode.style.display = 'flex';
-
+        getImgQrCode();
         apiConect = await response == 'true';
 
         botEnviar.style.backgroundColor = apiConect ? '#3880ff' : '#eb445a';
     } catch (error) {
         alert("Ocorreu um erro ao tentar comunicar com o servidor");
     } finally {
-        divQrCode.style.display = 'none';
-        img.remove();
+        buscarImgQrCode = false;
         habilitarDesabilitarBotConectar(false);
     }
 }
@@ -37,7 +33,25 @@ function habilitarDesabilitarBotConectar(habilitar) {
     } else {
         botConectar.removeAttribute('disabled');
         botConectar.style.backgroundColor = '#25D366';
+        divQrCode.style.display = 'none';
     }
+}
+
+async function getImgQrCode() {
+    divQrCode.style.display = 'flex';
+
+    while (buscarImgQrCode) {
+        try {
+            imgQrCode.setAttribute('src', `${baseUrlApi}/qrCode.png`);
+            divQrCode.appendChild(imgQrCode);
+
+            await sleep(2);
+        } catch (error) {
+            imgQrCode.remove();
+        }
+    }
+
+    divQrCode.style.display = 'none';
 }
 
 async function enviar(e) {
@@ -73,6 +87,8 @@ async function enviar(e) {
         console.log(response);
     } catch (error) {
         console.log(error);
+    } finally {
+        apiConect = false;
     }
 }
 
@@ -101,3 +117,12 @@ function apiPost(url, body = null) {
     });
 }
 
+/**
+ * Informe o delay em segundos
+ * 
+ * @param {*} delay 
+ * @returns 
+ */
+function sleep(delay) {
+    return new Promise(resolve => setTimeout(resolve, (delay * 1000)));
+}

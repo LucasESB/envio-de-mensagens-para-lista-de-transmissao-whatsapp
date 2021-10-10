@@ -14,6 +14,10 @@ body {
 
 #areaPrincipal {
     width: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
@@ -29,22 +33,29 @@ button {
 #botConectar {
     margin-top: 15px;
 
+    width: 100%;
+
     background-color: #25D366;
 }
 
 #qrcode {
     margin-top: 30px;
 
-    width: 100%;
+    width: 270px;
+    height: 270px;
 
     display: none;
     justify-content: center;
     align-items: center;
+
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 #form {
     display: flex;
     flex-direction: column;
+
+    width: 100%;
 
     margin-top: 30px;
 }
@@ -60,6 +71,6 @@ button {
 }
 
 #botEnviar {
-    margin-top: 10px;
+    margin-top: 5px;
     background-color: #eb445a;
 }
