@@ -4,7 +4,10 @@ const botConectar = document.getElementById('botConectar');
 const botEnviar = document.getElementById('botEnviar');
 const divQrCode = document.getElementById('qrcode');
 const imgQrCode = document.createElement('img');
-let buscarImgQrCode = true;
+const divInformacao = document.getElementById('informacao');
+const divTotalizadores = document.getElementById('totalizadores');
+let buscarImgQrCode = false;
+let listTrasmissao = [];
 
 document.getElementById('form')
     .addEventListener('submit', enviar);
@@ -14,6 +17,7 @@ async function conectar() {
 
     try {
         const response = apiPost('/conectar');
+        buscarImgQrCode = true;
         getImgQrCode();
         apiConect = await response == 'true';
 
@@ -30,6 +34,7 @@ function habilitarDesabilitarBotConectar(habilitar) {
     if (habilitar) {
         botConectar.setAttribute('disabled', 'disabled');
         botConectar.style.backgroundColor = '#b7d5ac';
+        divInformacao.style.display = 'none';
     } else {
         botConectar.removeAttribute('disabled');
         botConectar.style.backgroundColor = '#25D366';
@@ -69,7 +74,7 @@ async function enviar(e) {
     }
 
     const rows = await readXlsxFile(planilha.files[0]);
-    const listTrasmissao = [];
+    listTrasmissao = [];
 
     rows.forEach(linha => {
         linha.forEach(coluna => {
@@ -84,12 +89,34 @@ async function enviar(e) {
 
     try {
         const response = await apiPost('/enviarMensagemLista', body);
+        showInformacao(response);
         console.log(response);
     } catch (error) {
         console.log(error);
     } finally {
         apiConect = false;
     }
+}
+
+function showInformacao(response) {
+    const { listNumerosNaoEnviado } = response;
+
+    divTotalizadores.innerHTML = `
+    <p><span>Total Enviados:</span> ${listTrasmissao.length - listNumerosNaoEnviado.length}</p>
+    <p><span>Total N. Enviados:</span> ${listNumerosNaoEnviado.length}</p>`;
+
+
+    if (listNumerosNaoEnviado.length > 0) {
+        let listNumeros = '';
+
+        listNumerosNaoEnviado.forEach(n => listNumeros += `<li>${n}</li>`);
+
+        document.getElementById('listNumerosNaoEnviados').innerHTML = `
+        <h4>Lista de Contatos não Enviados:</h4>
+        <ul>${listNumeros}</ul>`;
+    }
+
+    divInformacao.style.display = 'block';
 }
 
 function apiGet(url) {

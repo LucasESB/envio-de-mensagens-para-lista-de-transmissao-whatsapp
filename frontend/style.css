@@ -1,6 +1,8 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
 }
 
 body {
@@ -18,6 +20,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#areaPrincipal > p {
+    text-align: justify;
+    text-indent: 20px;
+    line-height: 22px;
 }
 
 button {
@@ -73,4 +81,29 @@ button {
 #botEnviar {
     margin-top: 5px;
     background-color: #eb445a;
+}
+
+#informacao {
+    margin-top: 30px;
+
+    width: 100%;
+
+    display: none;
+}
+
+#totalizadores {
+    display: flex;
+    justify-content: space-between;
+}
+
+#totalizadores span {
+    font-weight: 700;
+}
+
+#listNumerosNaoEnviados {
+    margin-top: 15px;
+}
+
+#listNumerosNaoEnviados h4{
+    margin-bottom: 10px;
 }
